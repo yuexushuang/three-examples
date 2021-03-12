@@ -35,7 +35,15 @@
     },
     {
         text: '简单案例', children: [
-            { text: '天空盒', route: '/sample30', compath: 'views/Sample30.vue' }
+            { text: '天空盒实现一', route: '/sample30', compath: 'views/Sample30.vue' },
+            { text: '天空盒实现二', route: '/sample31', compath: 'views/Sample31.vue' },
+            { text: '加载gltf', route: '/sample32', compath: 'views/Sample32.vue' },
+        ]
+    },
+    {
+        text: '音频操作', children: [
+            { text: '音乐可视化-平均频率', route: '/sample40', compath: 'views/Sample40.vue' },
+            { text: '音乐可视化-实时频率', route: '/sample41', compath: 'views/Sample41.vue' },
         ]
     }
 ];

@@ -60,11 +60,19 @@
 
                 //添加控制器
                 this.orbitControl = new OrbitControls(this.camera, this.renderer.domElement)
-                this.orbitControl.enableRotate = true
+                //this.orbitControl.enablePan = false;
+                //this.orbitControl.screenSpacePanning = true;
+                this.orbitControl.enableDamping = true;
+                //this.orbitControl.addEventListener('change', () => {
+                //    console.log('change');
+                //    this.camera.updateProjectionMatrix();
+                //})
             },
             animate: function () {
                 requestAnimationFrame(this.animate)
+                this.orbitControl.update();
                 this.renderer.render(this.scene, this.camera)
+                //this.orbitControl.target = this.camera.
             },
 
             addObjects: function () {
@@ -77,9 +85,6 @@
                 // 设置阵列
                 texture.wrapS = THREE.RepeatWrapping;
                 texture.wrapT = THREE.RepeatWrapping;
-                // uv两个方向纹理重复数量
-                //texture.wrapS = 1001;
-                //texture.wrapT = 1001;
                 texture.repeat.set(10, 10);
                 var material = new THREE.MeshLambertMaterial({
                     map: texture,
@@ -88,11 +93,11 @@
                 this.scene.add(mesh); //网格模型添加到场景中
                 mesh.rotateX(-Math.PI / 2);
                 mesh.position.y = -800;
+                mesh.updateWorldMatrix();
 
-                //this.camera.lookAt(new THREE.Vector3(300, -1000, 300));
-                this.camera.lookAt(mesh.position);
-                this.camera.updateProjectionMatrix();
-                this.orbitControl.target = mesh.position;
+                this.orbitControl.target.copy(mesh.position); 
+                this.orbitControl.update();
+                
             },
 
             createSkyBox: function () {
